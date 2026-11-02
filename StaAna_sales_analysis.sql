@@ -22,8 +22,9 @@ WITH colorado_sales AS (
     FROM store_sales s
     JOIN store_locations l ON s.Store_ID = l.StoreId
     WHERE l.State IN ('Colorado')
-
+-- Used AI for support here
     UNION ALL
+    -- Used AI for support here 
 
     SELECT 
         o.SalesTotal AS revenue,
@@ -36,6 +37,7 @@ SELECT
     MIN(sale_date) AS start_date,
     MAX(sale_date) AS end_date
 FROM colorado_sales;
+-- Used AI for support here
 
 -- What is the revenue breakdown by year and month for the sales territory?
 WITH colorado_sales AS (
@@ -61,5 +63,6 @@ SELECT
 FROM colorado_sales
 GROUP BY YEAR(sale_date), MONTH(sale_date)
 ORDER BY sales_year DESC, sales_month DESC;
+-- Used AI for support here
 
 -- Provide a comparison of total revenue for the specific sales territory and the region it belongs to.
