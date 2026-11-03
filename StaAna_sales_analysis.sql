@@ -200,6 +200,8 @@ ORDER BY total_revenue DESC; -- order by total_reveune and descennd from highest
  -- the customers. Based on my code below and the data it retrieved, I would focus on marketing to Castle Rock, Grand Junction,
  -- and Littelton because there was only 1 book sold at each location for the 12th month. Grand Junction also performed the worst
  -- for quarter 4, selling only 15 books and 321.15 in revenue. 
+ 
+ -- I used AI for help
 
 SELECT
     YEAR(s.Transaction_Date) AS sales_year,
@@ -235,7 +237,7 @@ FROM store_sales s
 JOIN store_locations l ON s.Store_ID = l.StoreId
 JOIN products p ON s.Prod_Num = p.ProdNum
 JOIN inventory_categories cat ON p.Categoryid = cat.Categoryid
-WHERE l.State IN ('CO', 'Colorado')
+WHERE l.State IN ('Colorado')
     AND cat.Category = 'Books (General)'
 GROUP BY 
     YEAR(s.Transaction_Date), 
