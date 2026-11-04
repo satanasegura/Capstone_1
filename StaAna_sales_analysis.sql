@@ -17,25 +17,24 @@ SELECT * FROM store_sales;
 
 WITH colorado_sales AS (
     SELECT 
-		l.State,
+		l.State, -- this is state from store_location from JOIN and WHERE 
         s.Sale_Amount AS revenue, -- used s, as table store_sales, took sale_amount 
         -- from the table, used revenue as alias
         s.Transaction_Date AS sale_date -- s from store_sales, took transaction_date
         -- from table s and used sale date as alias 
-    FROM store_sales s -- from store_sales table, i took the sales_amount and transaction_date
-    
+    FROM store_sales s -- from store_sales table, i took the sales_amount and transaction_date and used s as a shortcut for store_sales
     JOIN store_locations l ON s.Store_ID = l.StoreId -- to join sales from 
     -- Colorado store IDs only, I used store_location table, added 1 as alias
     -- to then join store sales from the store_ID to l.StoreId location
-    WHERE l.State = 'Colorado'--  l as store ID and location,
-    -- i wrote location as an IN colorado from the State in store_locations
+    WHERE l.State = 'Colorado'--  l as store ID and location for state and store location in  JOIN
+    
 
 -- Used AI for support here
     UNION ALL -- combained all sales from store and also online
     -- Used AI for support here 
 
     SELECT 
-		o.ShiptoState AS State,
+		o.ShiptoState AS State, -- used this to then put as WHERE andn Colorado is the state and only colorado sales total
         o.SalesTotal AS revenue, -- took the sales total from online 
         -- Salestotal and used revenue as alias 
         o.Date AS sale_date -- used online orders from Date and used 
@@ -45,7 +44,7 @@ WITH colorado_sales AS (
     WHERE o.ShiptoState = 'Colorado' -- only taking orders from Colorado shippnig
 )
 SELECT 
-	State,
+	State, -- alias for shiptodate and orders are from Colorado
     ROUND(SUM(revenue), 2) AS total_revenue, -- alias as total revenue for both 
     -- s saleamount and o sales total, i get the revenue from both aka sum and 
     -- round to 2 decimals 
